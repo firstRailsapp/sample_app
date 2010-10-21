@@ -22,7 +22,7 @@ describe "Layout links" do
   end
   it "should have a sign up page at '/signup'" do
     get '/signup'
-    response.should render_template('user/new')
+    response.should render_template('users/new')
   end
   it "should have the right links on the layout" do
     visit root_path

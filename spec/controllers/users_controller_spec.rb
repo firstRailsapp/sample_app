@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe UserController do
+describe UsersController do
   integrate_views
   
   describe "GET 'new'" do
