@@ -1,9 +1,13 @@
-require 'digest'
+require'digest'
 class User < ActiveRecord::Base
   attr_accessor :password
+
   attr_accessible :name, :email, :password, :password_confirmation
+
   EmailRegex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+
   validates_presence_of :name, :email, :password
+
   validates_length_of   :name, :maximum => 50
 
   validates_format_of   :email, :with => EmailRegex
@@ -18,6 +22,11 @@ class User < ActiveRecord::Base
 
   def has_password?(submitted_password)
     encrypted_password == encrypt(submitted_password)
+    
+  end
+  def remember_me!
+    self.remember_token = encrypt("#{salt}--#{id}--#{Time.now.utc}")
+    save_without_validation
   end
 
   def self.authenticate(email, submitted_password)
@@ -30,8 +39,10 @@ class User < ActiveRecord::Base
   private
 
     def encrypt_password
-      self.salt = make_salt
-      self.encrypted_password = encrypt(password)
+      unless password.nil?
+        self.salt = make_salt
+        self.encrypted_password = encrypt(password)
+      end       
     end
 
     def encrypt(string)
