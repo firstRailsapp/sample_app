@@ -3,7 +3,7 @@
 }
 
 body {
-  background: #cff;
+  background: rgb(204,102,0);
 }
 
 #header {
@@ -12,14 +12,14 @@ body {
 
 #header img {
   padding: 1em;
-  background: #fff;
+  background:  #D3D3D3;
 }
 
 #content {
   margin-top: 1em;
   font-size: 120%;
   padding: 20px;
-  background: #fff;
+  background: #D3D3D3;
 }
 
 
@@ -39,7 +39,7 @@ a:visited {
 }
 
 .navigation {
-  background-color: white;
+  background-color: #D3D3D3;
   padding:0 0 0.7em;
   white-space: nowrap;
   float: right;
@@ -137,3 +137,15 @@ div.field, div.action {
   list-style: square;
 }
 
+img.round {
+    height: 50px;
+    width: 100px;
+}
+
+ul.users {
+    margin-top: 1em;
+}
+
+.users li {
+    list-style: none;
+}
