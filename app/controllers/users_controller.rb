@@ -5,7 +5,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @title = @user.name
+    @microposts = @user.microposts.paginate(:page => params[:page])
+    @title = CGI.escapeHTML(@user.name)
   end
 
  
@@ -61,7 +62,7 @@ class UsersController < ApplicationController
   end
 
   def admin_user
-    redirect_to(signin_path) unless current_user.admin?
+    redirect_to(root_path) unless current_user.admin?
   end
    
   

@@ -2,6 +2,7 @@ class SessionsController < ApplicationController
   def new
     @title = "Sign in"
     logger.debug "Reached herer"
+    
   end
 
   def create
@@ -18,7 +19,7 @@ class SessionsController < ApplicationController
 
   def destroy
     sign_out
-    redirect_to signin_path
+    redirect_to root_path
   end
 
 end

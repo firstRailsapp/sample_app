@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
 
   attr_accessible :name, :admin,  :email, :password, :password_confirmation
 
+  has_many :microposts, :dependent => :destroy
+  
   EmailRegex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
   validates_presence_of :name, :email, :password
@@ -35,6 +37,12 @@ class User < ActiveRecord::Base
     return user if user.has_password?(submitted_password)
     return nil
   end
+
+  def feed
+   # mircoposts
+    Micropost.all(:conditions => ["user_id = ?", id])
+  end
+  
 
   private
 

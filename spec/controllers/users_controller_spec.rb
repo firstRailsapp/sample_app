@@ -38,7 +38,17 @@ describe UsersController do
       get :show, :id => @user
       response.should have_tag("h2>img", :class => "gravatar")
     end
+
+    it "should show the user's micropost" do
+      mp1 = Factory(:micropost, :user =>@user, :content => "foo bar")
+      mp2 = Factory(:micropost, :user =>@user, :content => "Baz quux")
+      get:show, :id => @user
+      response.should have_tag("span.content", mp1.content)
+      response.should have_tag("span.content", mp2.content)
+    end
+    
   end
+  
   describe "POST 'create'" do
     describe "failure" do
       before(:each)  do
@@ -261,7 +271,7 @@ describe UsersController do
       it "should deny access" do
         test_sign_in(@user)
         delete :destroy, :id => @user
-        response.should redirect_to(signin_path)
+        response.should redirect_to(root_path)
       end
     end
 
@@ -269,7 +279,7 @@ describe UsersController do
       it "should protect the page" do
         test_sign_in(@user)
         delete :destroy, :id => @user
-        response.should redirect_to(signin_path)
+        response.should redirect_to(root_path)
       end
     end
 
