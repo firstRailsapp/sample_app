@@ -1,0 +1,12 @@
+ <script type="text/javascript">
+      $(function(){
+        $('#testButton').click(function(){
+          $.get(
+            'javascripts/reflectData.jsp',
+            {a:1, b:2, c:3},
+            function(data) { alert(data); }
+          );
+        });
+      });
+    </script>
+    <button type="button" id="testButton">Click me!</button>

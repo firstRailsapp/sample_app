@@ -1,8 +1,9 @@
-
+require 'simulate_helper.rb'
 class SimulateController < ApplicationController
-  after_filter :start_thread, :only => [:search]  
+  after_filter :start_thread, :only => [:search]
+  attr_reader :count
   def initialize
-    @sleep_time = 1
+    @sleep_time = 0.5
     @count = 0
   end
   
@@ -19,22 +20,26 @@ class SimulateController < ApplicationController
   def result
     render 'result'
   end
-  
-  def start_thread    
-    $thread = Thread.new do    
-        while @count < 100 do          
-          @count += 10          
-          $counts<< @count          
-        end      
-    end    
-  end
-  
-  def check_status    
-    sleep(@sleep_time)
-    logger.debug($index)
-    logger.debug($counts[$index])
-    render :text => "#{$counts[$index]}"
-    $index += 1
-  end
     
+  def start_thread        
+    $thread = Thread.new do
+      def count        
+          @count += 10
+      end
+      while @count < 100 do        
+        logger.debug("thread calling")
+        sleep(@sleep_time)
+        @count = count                
+      end
+      
+    end      
+    logger.debug($thread)
+    session[:thread_id] = $thread.id
+  end
+  
+  def check_status        
+    logger.debug(session[:thread_id])
+    render :text => ""
+  end
+      
 end
