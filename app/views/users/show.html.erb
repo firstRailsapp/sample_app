@@ -6,6 +6,9 @@
         <%= gravatar_for @user %>
         <%= h @user.name %>
       </h2>
+      <% if signed_in? %>
+      <%= render 'follow_form' %>
+      <% end %>
       <% unless @user.microposts.empty? %>
         <table class="microposts">
           <%= render @microposts %>
@@ -17,6 +20,7 @@
       <strong>Name</strong> <%= h @user.name %><br />
       <strong>URL</strong>  <%= link_to user_path(@user), @user %>
       <strong>Microposts</strong> <%= @user.microposts.count %>
+      <%= render 'pages/stats' %>
     </td>
   </tr>
 </table>

@@ -19,7 +19,7 @@ body {
   margin-top: 1em;
   font-size: 120%;
   padding: 20px;
-  background: #D3D3D3;
+  background: #D3D3ff;
 }
 
 
@@ -200,3 +200,52 @@ form.new_micropost textarea {
   height: 4em;
   margin-bottom: 0;
 }
+table.profile {
+  width: 100%;
+  margin-bottom: 0;
+}
+
+td.main {
+  width: 70%;
+  padding: 1em;
+}
+
+td.sidebar {
+  width: 30%;
+  padding: 1em;
+  vertical-align: top;
+  background: #ffc;
+}
+
+.profile img.gravatar {
+  border: 1px solid #999;
+  margin-bottom: -15px;
+}
+
+#to {
+    margin-left: 20px;
+}
+#progressbar {
+    background-color: #00ff34;
+    color: blue;
+}
+.ui-progressbar-value {
+}
+ui-widget-header ui-corner-left ui-corner-right {
+    color: blue;
+}
+.seats {
+    height: 30px;
+    weight: 30px;
+}
+label {
+    color: blue;
+}
+#submitButton {
+    background-color: green;    
+}
+
+#booking {
+    background-color: green;    
+}
+

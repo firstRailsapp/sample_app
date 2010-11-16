@@ -26,6 +26,8 @@ Spec::Runner.configure do |config|
   config.fixture_path = RAILS_ROOT + '/spec/fixtures/'
   
   def test_sign_in(user)
+    print "test_sign:#{user.inspect}\n"
+    
     controller.current_user = user
   end
   # == Fixtures

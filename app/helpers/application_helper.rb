@@ -2,16 +2,19 @@
 module ApplicationHelper
 
   def title
-    base_title = "Ruby on Rails Tutorial Sample App"
+    @base_title = "Ruby on Rails Tutorial Sample App"
     if @title.nil?
-      base_title
+      @base_title
     else
-      "#{base_title} | #{h(@title)}"
+      "#{@base_title} | #{h(@title)}"
     end
   end
 
   def logo
     image_tag("logo1.jpg", :alt => "Sample App", :class => "round")
   end
-  
+
+  def progress_status
+    @progress_bar
+  end
 end
