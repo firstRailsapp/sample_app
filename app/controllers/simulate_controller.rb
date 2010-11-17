@@ -7,8 +7,7 @@ class SimulateController < ApplicationController
   end    
   
   def search
-    $count = 0
-    thread = Thread.new { sleep(10)}
+    $count = 0    
     render 'search'    
   end
   
@@ -38,10 +37,10 @@ class SimulateController < ApplicationController
   def thread_list
     @threads = []
     Thread.list.each do |thread|
-      if thread.id == session[:current_thread]
+      if thread.object_id == session[:current_thread]
        # session[:count] = Counter.start_count        
       end
-      @threads << thread.id
+      @threads << thread.object_id
     end    
     @threads
   end
