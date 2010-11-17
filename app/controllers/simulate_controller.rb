@@ -25,7 +25,7 @@ class SimulateController < ApplicationController
   def check_status
     @thread_ids = []
     @thread_ids = thread_list
-    session[:count] = start_thread(true)    
+    start_thread(true)    
     logger.debug(session[:count])
     if @thread_ids.include?(session[:current_thread])
       render :text => session[:count]
@@ -41,16 +41,13 @@ class SimulateController < ApplicationController
       thread = Thread.new do
         while $count < 100 do        
           sleep(@sleep_time)
-          $count += 10
-          logger.debug($count)
+          $count += 10  
         end
       end
-      session[:current_thread] = thread.id    
-    else
-      logger.debug("true")
-      logger.debug($count)
-    end
-   # session[:count] = @count        
+      session[:current_thread] = thread.id
+    end       
+    session[:count] = $count
+    
   end
   
   def thread_list
