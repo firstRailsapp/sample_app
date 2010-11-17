@@ -1,24 +1,24 @@
 var count;
-$(document).ready(function() {   
+$(document).ready(function() {       
     checkStatus();   
 });
-function checkStatus() {        
+function checkStatus() {    
     $.ajax({              
         url: '/status',        
         success: function(xhr) {              
-            count = parseInt(xhr);            
+            count = parseInt(xhr);                  
         },
         error: function(xhr) {            
             $("body").load(xhr.status + " " + xhr.statusText);            
         },
-        complete:function() {
-           if (count < 100) {                
+        complete:function() {           
+            if (count < 100) {               
                 progressUpdate(count);
                 checkStatus();
             } else { 
                 progressUpdate(count);                
-                $("body").load("/result");
-            }          
+            $("body").load("/result");                
+        }          
         }    
     });
 }

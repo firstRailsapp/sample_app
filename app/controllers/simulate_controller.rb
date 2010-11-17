@@ -1,18 +1,15 @@
-require 'thread'
+require 'lib/tasks/thread_class.rb'
 class SimulateController < ApplicationController
- # after_filter :start_thread, :only => [:search]
-  
-  def initialize
-    @sleep_time = 1    
-  end
-  
+  after_filter :starting_thread, :only => [:search]  
+    
   def simulate
     @title = "HTTP Polling"
   end    
   
-  def search        
-    render 'search'
-    start_thread(false)
+  def search
+    $count = 0
+    thread = Thread.new { sleep(10)}
+    render 'search'    
   end
   
   
@@ -22,42 +19,32 @@ class SimulateController < ApplicationController
     
   
   
-  def check_status
+  def check_status    
     @thread_ids = []
     @thread_ids = thread_list
-    start_thread(true)    
-    logger.debug(session[:count])
     if @thread_ids.include?(session[:current_thread])
-      render :text => session[:count]
-    else
-      render :text => nil
+      render :text => session[:count]    
     end    
     
   end
   
-  def start_thread(cond)
-    if cond == false
-      $count = 0
-      thread = Thread.new do
-        while $count < 100 do        
-          sleep(@sleep_time)
-          $count += 10  
-        end
-      end
-      session[:current_thread] = thread.id
-    end       
-    session[:count] = $count
+  def starting_thread
+    logger.debug(Thread.list)
+    obj = Counter.new
+    logger.debug(Thread.list)
+    session[:current_thread] = obj.object_id    
+  end 
     
-  end
-  
   def thread_list
     @threads = []
     Thread.list.each do |thread|
+      if thread.id == session[:current_thread]
+       # session[:count] = Counter.start_count        
+      end
       @threads << thread.id
     end    
     @threads
   end
-  
       
 end
 
