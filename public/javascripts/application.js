@@ -1,4 +1,4 @@
-var count;
+var count = 0;
 $(document).ready(function() {   
     checkStatus();   
 });
@@ -6,15 +6,16 @@ function checkStatus() {
     $.ajax({              
         url: '/status',        
         success: function(xhr) {              
-            count = parseInt(xhr);            
+            //count = parseInt(xhr);
+            count += 10;
         },
         error: function(xhr) {            
             $("body").load(xhr.status + " " + xhr.statusText);            
         },
-        complete:function() {            
-            if (count < 100 ) {
+        complete:function() {
+           if (count < 100) {                
                 progressUpdate(count);
-                checkStatus();             
+                setTimeout('checkStatus()', 1000);             
             } else { 
                 progressUpdate(count);                
                 $("body").load("/result");
