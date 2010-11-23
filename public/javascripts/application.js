@@ -16,8 +16,8 @@ function checkStatus() {
                 progressUpdate(count);
                 checkStatus();
             } else { 
-                progressUpdate(count);                
-                $("body").load("/result");                 
+                progressUpdate(count);                              
+                document.location.href = '/result';
         }          
         }    
     });
