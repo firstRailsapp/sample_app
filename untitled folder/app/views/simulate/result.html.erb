@@ -1,0 +1,20 @@
+<%= javascript_include_tag 'result' %>
+<h1>Search Result</h1>
+<div id="images1"> 
+</div>
+<div id="images2">
+</div>
+<div>
+  <%= image_tag("seat_avail.jpg", :alt => "seats", :id => "1", :class => "seats" ) %>
+</div>
+<div id="images3"> 
+</div>
+<div id="images4">
+</div>
+<div>
+  <label>SeatNumber:</label>
+  <input type="text" id="seatNumber" size="15" value="">
+  <label id="amount">Amount:</label>
+  <input type="text" id="amount" size="10" value="">
+</div>
+<input type="button" id="booking" value="Book">

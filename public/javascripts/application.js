@@ -6,7 +6,7 @@ function checkStatus() {
     $.ajax({              
         url: '/status',        
         success: function(xhr) {              
-            count = parseInt(xhr);                  
+            count = parseInt(xhr);            
         },
         error: function(xhr) {            
             $("body").load(xhr.status + " " + xhr.statusText);            
@@ -17,7 +17,7 @@ function checkStatus() {
                 checkStatus();
             } else { 
                 progressUpdate(count);                
-            $("body").load("/result");                
+                $("body").load("/result");                 
         }          
         }    
     });

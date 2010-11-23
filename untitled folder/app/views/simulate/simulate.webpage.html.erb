@@ -1,0 +1,22 @@
+<% form_for :simulate, :method => 'get', :url => { :action => 'search'} do |f| %>
+<div class="field">
+  <%= f.label :from %>
+  <%= f.text_field :from %>
+</div>
+<div class="field" id="to">
+  <%= f.label :to %>
+  <%= f.text_field :to %>
+</div>
+<div class="field">
+  <%= f.label :date %>
+  <%= f.text_field :date %>
+</div>
+<div class="field">
+  <%= f.radio_button :way,'oneWay' %>OneWay
+  <%= f.radio_button:way, 'twoWay' %>TwoWay
+</div>
+<div class="actions">
+  <%= f.submit "submit", :class => "round",:id => "submitButton" %>
+</div>
+<% end %>
+
